@@ -3,177 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>人机</title>
+    <title>视频播放倒计时页面</title>
     <style>
-        body{
-            margin:0;
-            padding:40px;
-            background:#0f172a;
-            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-            color:#e2e8f0;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #e0f7fa;
+            min-height: 100vh;
         }
-        .container{
-            max-width:600px;
-            margin:0 auto;
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(13, 19, 33, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(64, 224, 208, 0.2);
         }
-        .image-item{
-            margin-bottom:100px;
-            text-align:center;
-            background:rgba(255,255,255,.08);
-            border-radius:16px;
-            padding:25px;
-            transition:all .3s ease;
+        
+        h1 {
+            text-align: center;
+            color: #40e0d0;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
         }
-        .image-item:hover{
-            transform:translateY(-8px);
-            background:rgba(255,255,255,.15);
+        
+        .video-container {
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
-        .image-number{
-            font-size:18px;
-            color:#94a3b8;
-            margin-bottom:15px;
+        
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
-        .image-container img{
-            max-width:100%;
-            height:auto;
-            border-radius:8px;
+        
+        .countdown-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(25, 39, 52, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-        .image-caption{
-            margin-top:20px;
-            font-size:18px;
-            color:#cbd5e1;
-            line-height:1.7;
+        
+        .countdown {
+            font-size: 2.2rem;
+            color: #40e0d0;
+            font-weight: bold;
+            margin: 15px 0;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(64, 224, 208, 0.7);
         }
-        /* 视频区域样式 */
-        .video-box{
-            margin-top:25px;
+        
+        .status {
+            font-size: 1.3rem;
+            color: #b2ebf2;
+            margin-top: 15px;
         }
-        .video-box video{
-            max-width:100%;
-            border-radius:8px;
+        
+        .close-time {
+            font-size: 1.1rem;
+            color: #80deea;
+            margin-bottom: 15px;
         }
-        .video-hint{
-            margin-top:10px;
-            font-size:16px;
-            color:#94a3b8;
+        
+        .expired {
+            color: #ff5252;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(255, 82, 82, 0.7);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 1️⃣ 第 1 张 -->
-        <div class="image-item">
-            <div class="image-number">1</div>
-            <div class="image-container">
-                <img src="https://raw.githubusercontent.com/HKJQ3/HKJQ3.github.io/refs/heads/main/emotion_download_1759681621946.jpeg" alt="表情">
-            </div>
-            <div class="image-caption">
-                ↓↓↓
-            </div>
-            <!-- 照片下方视频 -->
-            <div class="video-box">
-                <video controls preload="metadata">
-                    <source src="https://github.com/HKJQ3/HKJQ3.github.io/raw/refs/heads/main/mmexport1759328537043.mp4" type="video/mp4">
-                    浏览器不支持 video 标签
-                </video>
-                <div class="video-hint">点击播放视频</div>
-            </div>
+        <h1>🎬 视频播放页面</h1>
+        
+        <div class="video-container">
+            <video controls width="640" height="360">
+                <!-- 请替换下面的视频URL为您自己的视频地址 -->
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- 备用视频源 -->
+                <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
         </div>
-
-        <!-- 2️⃣ 第 2 张 -->
-        <div class="image-item">
-            <div class="image-number">2</div>
-            <div class="image-container">
-                <img src="https://raw.githubusercontent.com/HKJQ3/HKJQ3.github.io/refs/heads/main/emotion_download_1759681637598.jpeg" alt="表情包2">
-            </div>
-            <div class="image-caption">↓↓↓</div>
-            <!-- 照片下方视频 -->
-            <div class="video-box">
-                <video controls preload="metadata">
-                    <source src="https://github.com/HKJQ3/HKJQ3.github.io/raw/refs/heads/main/mmexport1759574632662.mp4" type="video/mp4">
-                    浏览器不支持 video 标签
-                </video>
-                <div class="video-hint">点击播放视频</div>
-            </div>
-        </div>
-
-        <!-- 3️⃣ 第 3 张 -->
-        <div class="image-item">
-            <div class="image-number">3</div>
-            <div class="image-container">
-                <img src="https://raw.githubusercontent.com/HKJQ3/HKJQ3.github.io/refs/heads/main/emotion_download_1759681641389.jpeg" alt="表情包3">
-            </div>
-            <div class="image-caption">↓↓↓</div>
-            <!-- 照片下方视频 -->
-            <div class="video-box">
-                <video controls preload="metadata">
-                    <source src="https://github.com/HKJQ3/HKJQ3.github.io/raw/refs/heads/main/Video_1759421837947.mp4" type="video/mp4">
-                    浏览器不支持 video 标签
-                </video>
-                <div class="video-hint">点击播放视频</div>
-            </div>
-        </div>
-
-        <!-- 4️⃣ 第 4 张 -->
-        <div class="image-item">
-            <div class="image-number">4</div>
-            <div class="image-container">
-                <img src="https://raw.githubusercontent.com/HKJQ3/HKJQ3.github.io/refs/heads/main/emotion_download_1759681642749.jpeg" alt="表情包4">
-            </div>
-            <div class="image-caption">↓↓↓</div>
-            <!-- 照片下方视频 -->
-            <div class="video-box">
-                <video controls preload="metadata">
-                    <source src="https://github.com/HKJQ3/HKJQ3.github.io/raw/refs/heads/main/Video_1759301135324.mp4" type="video/mp4">
-                    浏览器不支持 video 标签
-                </video>
-                <div class="video-hint">点击播放视频</div>
-            </div>
-        </div>
-
-        <!-- 5️⃣ 第 5 张 -->
-        <div class="image-item">
-            <div class="image-number">5</div>
-            <div class="image-container">
-                <img src="https://raw.githubusercontent.com/HKJQ3/HKJQ3.github.io/refs/heads/main/emotion_download_1759681644912.jpeg" alt="表情包5">
-            </div>
-            <div class="image-caption">🤣🤣🤣</div>
-            <!-- 照片下方视频 -->
-            <div class="video-box">
-                <video controls preload="metadata">
-                    <source src="https://github.com/HKJQ3/HKJQ3.github.io/raw/refs/heads/main/Video_1755971245134.mp4" type="video/mp4">
-                    浏览器不支持 video 标签
-                </video>
-                <div class="video-hint">点击播放视频</div>
-            </div>
+        
+        <div class="countdown-container">
+            <div class="close-time" id="closeTime">关闭时间：加载中...</div>
+            <div class="countdown" id="countdown">计算中...</div>
+            <div class="status" id="status">距离关闭时间还剩</div>
         </div>
     </div>
 
-    <!-- 背景音乐：自动+循环，初始静音 -->
-    <audio id="bgm" autoplay loop muted style="display:none;">
-        <source src="https://raw.githubusercontent.com/kkaaccnnbb/music/refs/heads/main/%E7%A7%8B%E6%88%90%20-%20%E7%A7%8B%E6%88%90-%E5%BD%93%E7%BE%9E%E6%B6%A9%E4%B8%8D%E5%86%8D%E7%A6%81%E9%94%A2%20%E6%B8%85%E6%B5%81%E4%B9%9F%E6%98%AF%E4%B8%80%E7%A7%8D%E7%BD%AA%EF%BC%88%E7%A7%8B%E6%88%90%20remix%EF%BC%89.mp3" type="audio/mpeg">
-        你的浏览器不支持 audio 标签。
-    </audio>
-
-    <!-- 静音/有声切换按钮 -->
-    <button id="muteBtn" style="position:fixed;top:15px;right:15px;z-index:999;
-                                 border:none;background:rgba(255,255,255,.25);
-                                 color:#fff;border-radius:50%;width:40px;height:40px;
-                                 font-size:18px;cursor:pointer;">🔇</button>
-
     <script>
-        const bgm = document.getElementById('bgm');
-        const btn = document.getElementById('muteBtn');
-        // 用户第一次交互后允许有声
-        document.body.addEventListener('click',()=>{
-            bgm.muted = false;
-            btn.textContent = '🔊';
-        },{once:true});
-        // 按钮随时切换
-        btn.onclick = () => {
-            bgm.muted = !bgm.muted;
-            btn.textContent = bgm.muted ? '🔇' : '🔊';
-        };
+        // 设置关闭时间（24小时制，格式：小时:分钟）
+        const closeTime = "8:00";
+        
+        function parseTime(timeStr) {
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            return { hours, minutes };
+        }
+        
+        function updateCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const currentMonth = now.getMonth();
+            const currentDate = now.getDate();
+            
+            const { hours: closeHours, minutes: closeMinutes } = parseTime(closeTime);
+            
+            // 创建今天的关闭时间
+            let closeDateTime = new Date(currentYear, currentMonth, currentDate, closeHours, closeMinutes);
+            
+            // 如果今天的关闭时间已过，则设置为明天
+            if (closeDateTime <= now) {
+                closeDateTime.setDate(closeDateTime.getDate() + 1);
+            }
+            
+            // 显示关闭时间
+            const closeTimeStr = closeDateTime.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            });
+            document.getElementById('closeTime').textContent = `关闭时间：${closeTimeStr}`;
+            
+            // 计算剩余时间
+            const timeDiff = closeDateTime - now;
+            
+            if (timeDiff > 0) {
+                const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+                
+                let timeString = '';
+                if (hours > 0) {
+                    timeString += `${hours}小时`;
+                }
+                if (minutes > 0 || hours > 0) {
+                    timeString += `${minutes}分钟`;
+                }
+                timeString += `${seconds}秒`;
+                
+                document.getElementById('countdown').textContent = timeString;
+                document.getElementById('status').textContent = '距离关闭时间还剩';
+                
+                // 当剩余时间少于5分钟时，改变颜色
+                if (timeDiff < 5 * 60 * 1000) {
+                    document.getElementById('countdown').style.color = '#ff4444';
+                    document.getElementById('countdown').style.textShadow = '0 0 8px rgba(255, 68, 68, 0.7)';
+                } else {
+                    document.getElementById('countdown').style.color = '#40e0d0';
+                    document.getElementById('countdown').style.textShadow = '0 0 8px rgba(64, 224, 208, 0.7)';
+                }
+            } else {
+                document.getElementById('countdown').innerHTML = '<span class="expired">⏰ 时间到！页面已关闭</span>';
+                document.getElementById('status').textContent = '';
+                
+                // 时间到后的操作
+                setTimeout(() => {
+                    // 可以选择关闭页面或跳转到其他页面
+                    // window.close(); // 注意：这可能在某些浏览器中不起作用
+                    // window.location.href = 'about:blank';
+                    alert('时间到！页面将在3秒后关闭');
+                    setTimeout(() => {
+                        window.location.href = 'about:blank';
+                    }, 3000);
+                }, 1000);
+            }
+        }
+        
+        // 立即更新一次
+        updateCountdown();
+        
+        // 每秒更新倒计时
+        setInterval(updateCountdown, 1000);
+        
+        // 页面加载完成后的提示
+        window.addEventListener('load', () => {
+            console.log('页面加载完成，倒计时开始...');
+            
+            // 检查视频是否可以播放
+            const video = document.querySelector('video');
+            video.addEventListener('error', (e) => {
+                console.error('视频加载失败:', e);
+                alert('视频加载失败，请检查视频源是否正确');
+            });
+            
+            video.addEventListener('loadeddata', () => {
+                console.log('视频加载成功');
+            });
+        });
+        
+        // 添加键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            const video = document.querySelector('video');
+            switch(e.key) {
+                case ' ': // 空格键播放/暂停
+                    e.preventDefault();
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                    break;
+                case 'f': // F键全屏
+                    if (video.requestFullscreen) {
+                        video.requestFullscreen();
+                    }
+                    break;
+            }
+        });
     </script>
 </body>
 </html>
