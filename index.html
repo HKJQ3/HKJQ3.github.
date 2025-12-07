@@ -108,32 +108,23 @@
     </div>
 
     <script>
-        // 设置关闭时间（24小时制，格式：小时:分钟）
-        const closeTime = "8:00";
+        // 设置关闭时间为 2025/12/8 12:01
+        const closeDateTime = "2025/12/8 12:01";
         
-        function parseTime(timeStr) {
-            const [hours, minutes] = timeStr.split(':').map(Number);
-            return { hours, minutes };
+        function parseDateTime(dateTimeStr) {
+            // 解析 "2025/12/8 12:01" 格式
+            const [datePart, timePart] = dateTimeStr.split(' ');
+            const [year, month, day] = datePart.split('/').map(Number);
+            const [hours, minutes] = timePart.split(':').map(Number);
+            return new Date(year, month - 1, day, hours, minutes);
         }
         
         function updateCountdown() {
             const now = new Date();
-            const currentYear = now.getFullYear();
-            const currentMonth = now.getMonth();
-            const currentDate = now.getDate();
-            
-            const { hours: closeHours, minutes: closeMinutes } = parseTime(closeTime);
-            
-            // 创建今天的关闭时间
-            let closeDateTime = new Date(currentYear, currentMonth, currentDate, closeHours, closeMinutes);
-            
-            // 如果今天的关闭时间已过，则设置为明天
-            if (closeDateTime <= now) {
-                closeDateTime.setDate(closeDateTime.getDate() + 1);
-            }
+            const targetTime = parseDateTime(closeDateTime);
             
             // 显示关闭时间
-            const closeTimeStr = closeDateTime.toLocaleString('zh-CN', {
+            const closeTimeStr = targetTime.toLocaleString('zh-CN', {
                 year: 'numeric',
                 month: '2-digit',
                 day: '2-digit',
@@ -144,18 +135,22 @@
             document.getElementById('closeTime').textContent = `关闭时间：${closeTimeStr}`;
             
             // 计算剩余时间
-            const timeDiff = closeDateTime - now;
+            const timeDiff = targetTime - now;
             
             if (timeDiff > 0) {
-                const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
                 
                 let timeString = '';
-                if (hours > 0) {
+                if (days > 0) {
+                    timeString += `${days}天`;
+                }
+                if (hours > 0 || days > 0) {
                     timeString += `${hours}小时`;
                 }
-                if (minutes > 0 || hours > 0) {
+                if (minutes > 0 || hours > 0 || days > 0) {
                     timeString += `${minutes}分钟`;
                 }
                 timeString += `${seconds}秒`;
